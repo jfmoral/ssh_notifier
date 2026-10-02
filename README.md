@@ -30,9 +30,9 @@ Este proyecto fue diseñado teniendo la ciberseguridad y la disponibilidad como 
 **1. Clonar el repositorio**
 Recomendamos instalar la herramienta en `/opt/` para mantener el sistema organizado.
 ```bash
-sudo git clone https://github.com/TU_USUARIO/ssh-notifier.git /opt/ssh-notifier
-sudo chown -R $USER:$USER /opt/ssh-notifier
-cd /opt/ssh-notifier
+sudo git clone https://github.com/TU_USUARIO/ssh_notifier.git /opt/ssh_notifier
+sudo chown -R $USER:$USER /opt/ssh_notifier
+cd /opt/ssh_notifier
 ```
 
 **2. Crear el entorno virtual e instalar dependencias**
@@ -73,7 +73,7 @@ sudo nano /etc/pam.d/sshd
 **2. Agregar la ejecución del script al final del archivo:**
 Añade la siguiente línea. El parámetro `optional` es vital para garantizar que puedas entrar al servidor incluso si el script falla.
 ```text
-session optional pam_exec.so /opt/ssh-notifier/venv/bin/python /opt/ssh-notifier/src/ssh_monitor.py
+session optional pam_exec.so /opt/ssh_notifier/venv/bin/python /opt/ssh_notifier/src/ssh_monitor.py
 ```
 *(Guarda y cierra el archivo. No es necesario reiniciar el servicio SSH).*
 
@@ -96,7 +96,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/ssh-notifier/venv/bin/python /opt/ssh-notifier/src/fail_monitor.py
+ExecStart=/opt/ssh_notifier/venv/bin/python /opt/ssh_notifier/src/fail_monitor.py
 Restart=always
 RestartSec=10
 User=root
